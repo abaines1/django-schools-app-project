@@ -1,0 +1,45 @@
+{% extends 'basic_app/basic_app_base.html' %}
+{% block body_block %}
+<div class="container mt-5">
+
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">School Detail</h1>
+        <p class="lead text-muted">Detailed information about the selected school</p>
+    </div>
+
+    <!-- School Info Card -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h2 class="card-title h4 mb-3">{{ school.name }}</h2>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Principal:</strong> {{ school.principal }}</li>
+                <li class="list-group-item"><strong>Location:</strong> {{ school.location }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Students Section -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title h5 mb-3">Students</h3>
+            {% if school.students.all %}
+                <ul class="list-group list-group-flush">
+                    {% for student in school.students.all %}
+                        <li class="list-group-item">
+                            <i class="bi bi-person-fill"></i>
+                            {{ student.name }} <span class="text-muted">(Age {{ student.age }})</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-muted">No students enrolled yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="container mt-5">  
+    <a href="{% url 'basic_app:update' pk=school.pk %}" class="btn btn-primary">Update</a>
+    <a href="{% url 'basic_app:delete' pk=school.pk %}" class="btn btn-danger">Delete</a>
+</div>
+{% endblock %}
