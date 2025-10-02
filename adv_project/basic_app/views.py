@@ -58,3 +58,22 @@ class SchoolDeleteView(DeleteView):
     
     def get_success_url(self):
         return reverse_lazy('basic_app:list')  # redirect to list page
+
+class StudentDetailView(DetailView):
+    model = models.Student
+    template_name = 'basic_app/student_detail.html'
+
+class StudentCreateView(CreateView):
+    fields = ('name', 'age', 'school')
+    model = models.Student
+
+    def get_success_url(self):
+        return reverse_lazy('basic_app:school_detail', kwargs={'pk': self.object.school.pk})
+    
+
+class StudentUpdateView(UpdateView):
+    fields = ('name', 'age', 'school')
+    model = models.Student
+
+    def get_success_url(self):
+        return reverse_lazy('basic_app:student_detail', kwargs={'pk': self.object.pk})

@@ -18,19 +18,21 @@
             </ul>
         </div>
     </div>
-
+    <a href="{% url 'basic_app:create_student' %}" class="btn btn-primary mb-3"> Create Student </a>
     <!-- Students Section -->
     <div class="card shadow-sm">
         <div class="card-body">
             <h3 class="card-title h5 mb-3">Students</h3>
             {% if school.students.all %}
                 <ul class="list-group list-group-flush">
-                    {% for student in school.students.all %}
-                        <li class="list-group-item">
-                            <i class="bi bi-person-fill"></i>
+                {% for student in school.students.all %}
+                    <li class="list-group-item">
+                        <i class="bi bi-person-fill"></i>
+                        <a href="{% url 'basic_app:student_detail' pk=student.id %}">
                             {{ student.name }} <span class="text-muted">(Age {{ student.age }})</span>
-                        </li>
-                    {% endfor %}
+                        </a>
+                    </li>
+                {% endfor %}
                 </ul>
             {% else %}
                 <p class="text-muted">No students enrolled yet.</p>
