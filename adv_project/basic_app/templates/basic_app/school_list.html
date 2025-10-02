@@ -7,7 +7,8 @@
     <div class="card shadow-lg">
         <div class="card-body">
             <h2 class="card-title h4 mb-3">Available Schools</h2>
-            <ol class="list-group list-group-numbered">
+            <a href="{% url 'basic_app:create' %}" class="btn btn-primary mb-3"> Add School </a>
+            <ul class="list-group">
                 {% for school in school_list %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <a href="{% url 'basic_app:school_detail' school.id %}" class="text-decoration-none fw-bold">
@@ -18,7 +19,7 @@
                 {% empty %}
                 <li class="list-group-item text-muted">No schools found.</li>
                 {% endfor %}
-            </ol>
+            </ul>
         </div>
     </div>
 </div>
