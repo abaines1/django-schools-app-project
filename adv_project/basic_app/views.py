@@ -77,3 +77,10 @@ class StudentUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('basic_app:student_detail', kwargs={'pk': self.object.pk})
+    
+class StudentDeleteView(DeleteView):
+    model = models.Student
+
+    def get_success_url(self):
+        student_school_id = self.object.school.pk
+        return reverse_lazy('basic_app:school_detail', kwargs={'pk': student_school_id})
