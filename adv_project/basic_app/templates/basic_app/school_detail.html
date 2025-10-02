@@ -18,27 +18,29 @@
             </ul>
         </div>
     </div>
-    <a href="{% url 'basic_app:create_student' %}" class="btn btn-primary mb-3"> Create Student </a>
     <!-- Students Section -->
     <div class="card shadow-sm">
-        <div class="card-body">
-            <h3 class="card-title h5 mb-3">Students</h3>
-            {% if school.students.all %}
-                <ul class="list-group list-group-flush">
-                {% for student in school.students.all %}
-                    <li class="list-group-item">
-                        <i class="bi bi-person-fill"></i>
-                        <a href="{% url 'basic_app:student_detail' pk=student.id %}">
-                            {{ student.name }} <span class="text-muted">(Age {{ student.age }})</span>
-                        </a>
-                    </li>
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p class="text-muted">No students enrolled yet.</p>
-            {% endif %}
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="card-title h5 mb-0">Students</h3>
+            <a href="{% url 'basic_app:create_student' %}" class="btn btn-primary">
+                <i class="bi bi-plus"></i> Create New Student
+            </a>
         </div>
+
+        <ul class="list-group list-group-flush">
+            {% for student in school.student_set.all %}
+                <li class="list-group-item">
+                    <a href="{% url 'basic_app:student_detail' student.pk %}">
+                        {{ student.name }} (Age {{ student.age }})
+                    </a>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">No students found.</li>
+            {% endfor %}
+        </ul>
     </div>
+</div>
 </div>
 <div class="container mt-5">  
     <a href="{% url 'basic_app:update' pk=school.pk %}" class="btn btn-primary">Update</a>
