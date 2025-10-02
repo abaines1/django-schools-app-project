@@ -5,9 +5,13 @@
     <div class="card shadow-sm">
         <div class="card-body">
             <h3 class="card-title h5 mb-3"> Student Detail </h3>
-            <p> Name: {{ student.name }} </p>
-            <p> Age: {{ student.age }}</p>
-            <p> School: {{ student.school }}</p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <p> Name: {{ student.name }} </p>
+                    <p> Age: {{ student.age }}</p>
+                    <p> School: {{ student.school }}</p>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="container"> 
