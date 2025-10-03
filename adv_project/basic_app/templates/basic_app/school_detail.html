@@ -29,7 +29,7 @@
         </div>
 
         <ul class="list-group list-group-flush">
-            {% for student in school.student.alll %}
+            {% for student in school.students.all %}
                 <li class="list-group-item">
                     <a href="{% url 'basic_app:student_detail' student.pk %}">
                         {{ student.name }} (Age {{ student.age }})
